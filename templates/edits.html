@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+
+
+
+{% block edits %} 
+<h1> Edit {{users.first_name}} {{users.last_name}}</h1>
+
+<form action="/users/{{ users.id }}/edit" method="POST">
+
+
+<p>First Name  <input type="text" name="first_name" placeholder="{{users.first_name}}"></p>
+<p>Last Name   <input type="text" name="last_name" placeholder="{{users.last_name}}"></p>
+<p>Image URL   <input type="text" name="image" placeholder="URL"></p>
+<button type="submit">Save</button>
+</form>
+
+
+
+
+<form action="/users/{{users.id}}">
+    <button type="submit"> Cancel</button>
+</form>
+
+
+
+{% endblock %}

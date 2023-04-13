@@ -84,3 +84,49 @@ def show_details(user_id):
     users = User.query.get_or_404(user_id)
    
     return render_template('details.html', users=users)
+
+
+@app.route('/users/<int:user_id>/edit')
+def edit_details(user_id):
+    
+    """edit user profile"""
+
+    users = User.query.get_or_404(user_id)
+
+    return render_template('edits.html', users=users)
+
+
+
+
+@app.route('/users/<int:user_id>/edit', methods=["POST"])
+def update_details(user_id):
+    
+    """update user"""
+
+    first = request.form['first_name']
+    last = request.form['last_name']
+    url = request.form['image']
+
+    users = User.query.get_or_404(user_id)
+
+    users.first_name = first 
+    users.last_name = last
+    users.image_url = url
+    
+  
+
+    
+    db.session.commit()
+
+    return redirect("/users")
+
+
+
+@app.route('/users/<int:user_id>/delete', methods=["POST"])
+def delete_user(user_id):
+
+   users = User.query.get_or_404(user_id)
+   db.session.delete(users)
+   db.session.commit()
+    
+   return redirect('/users')
