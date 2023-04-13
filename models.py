@@ -10,18 +10,18 @@ def connect_db(app):
 
 class User(db.Model):
 
-    __tablename__ = 'user'
+    __tablename__ = 'users'
 
 
     id = db.Column(db.Integer,
                    primary_key= True,
                    autoincrement=True)
     
-    first_name = db.Column(db.String(50),
+    first_name = db.Column(db.String(100),
                            nullable=False,
                            unique=True)
    
-    last_name = db.Column(db.String(50),
+    last_name = db.Column(db.String(100),
                            nullable=False,
                            unique=False )
     

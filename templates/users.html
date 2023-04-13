@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+
+{% block users_list %}
+<H1>
+    USERS
+</H1>
+
+<ul>
+    {% for user in users %}
+    <li><a href="/users/{{user.id}}"> {{user.first_name}} {{user.last_name}}</a></li>
+    {% endfor %}
+</ul>
+
+ <a href="/user/new"> Add User</a>
+
+ <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgVrtYYHLJp5zJSzbISkUbG29_MeUGwZX4JQ&usqp=CAU"> -->
+{% endblock %}
+
+
