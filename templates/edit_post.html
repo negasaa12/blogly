@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+
+
+
+{% block edit_post %}
+
+
+
+<h1> EDIT POST {{post.id}}</h1>
+<form action="/posts/{{post.id}}/edit" method="POST" id="add-post">
+    <div class="container">
+      <div class="mb-3">
+        <label for="title" class="form-label"> Title </label>
+        <input type="text" name="title" class="form-control" placeholder="{{post.title}}">
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label"> Post Content</label>
+        <textarea class="form-control" name="content" rows="3" placeholder="{{post.content}}"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Edit</button>
+ 
+    </div>
+  </form>
+ 
+       
+  <form action="/users/{{post.id}}"> 
+    <button class="btn btn-secondary" type="submit"> Cancel </button>
+</form>
+
+
+{% endblock %}

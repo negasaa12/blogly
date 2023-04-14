@@ -12,15 +12,17 @@
 
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div> -->
+
+<h1> Edit {{post.name}}</h1> wewewewewewewe
 <form action="/users/{{users.id}}/posts/new" method="POST" id="add-post">
     <div class="container">
       <div class="mb-3">
         <label for="title" class="form-label"> Title </label>
-        <input type="text" name="title" class="form-control" required>
+        <input type="text" name="title" class="form-control" placeholder="{{post.title}}">
       </div>
       <div class="mb-3">
         <label for="content" class="form-label">Content</label>
-        <textarea class="form-control" name="content" rows="3" required></textarea>
+        <textarea class="form-control" name="content" rows="3" placeholder="{{post.content}}"</textarea>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>

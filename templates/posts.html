@@ -7,8 +7,27 @@
 
 {% block show_post %} 
 
-<p>{{posts.content}}</p>
+<h1>{{posts.title}}</h2>
+
+<container>
+<div class="row mx-md-n4"> 
+    
+    <div class="col px-md-5">{{posts.content}}</div>
 
 
+</div>
+
+<form action="/users/{{posts.id}}">
+<button type="submit" class="btn btn-secondary">Cancel</button>
+</form>
+
+<form action='/posts/{{posts.id}}/edit'>
+<button class="btn btn-primary">Edit</button>
+</form>
+
+<form>
+<button type="submit" class="btn btn-danger">Delete</button>
+</form>
+</container>
 
 {% endblock %}
