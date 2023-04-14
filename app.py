@@ -171,9 +171,10 @@ def add_post(user_id):
 @app.route('/posts/<int:post_id>')
 def show_post(post_id):
     """SHOWS USERS POSTS"""
-
+    
+    
     posts = Post.query.get_or_404(post_id)
-
+    
 
     return render_template('posts.html', posts=posts)
 
@@ -210,3 +211,14 @@ def handle_post(post_id):
     db.session.commit()
 
     return redirect(f"/posts/{post_id}")
+
+@app.route('/posts/<int:post_id>/delete', methods=["POST"])
+def delete_post(post_id):
+
+   post = Post.query.get_or_404(post_id)
+
+   db.session.delete(post)
+   db.session.commit()
+
+
+   return redirect(f"/users/{post_id}")
