@@ -48,7 +48,7 @@ def list_users():
 
 @app.route('/user/new')
 def create_user():
-
+    """Create A User Form """
     
     
     return render_template('create.html')
@@ -57,7 +57,7 @@ def create_user():
 @app.route('/users/new', methods=["POST"])
 def created_user():
 
-    """create user"""
+    """handle user form to create user"""
 
     first = request.form['fname']
     last = request.form['lname']
@@ -81,8 +81,9 @@ def show_details(user_id):
 
 
     users = User.query.get_or_404(user_id)
+    posts = Post.query.filter_by(user_id=user_id)
    
-    return render_template('details.html', users=users)
+    return render_template('details.html', users=users,posts=posts)
 
 
 @app.route('/users/<int:user_id>/edit')
@@ -91,6 +92,7 @@ def edit_details(user_id):
     """edit user profile"""
 
     users = User.query.get_or_404(user_id)
+
 
     return render_template('edits.html', users=users)
 
@@ -142,7 +144,7 @@ def post_form(user_id):
 
     users = User.query.get_or_404(user_id)
 
-    return render_template('post.html', users=users)
+    return render_template('post_form.html', users=users)
 
 
 
@@ -159,5 +161,18 @@ def add_post(user_id):
    db.session.add(post)
    db.session.commit()
 
-   posts = Post.query.get_or_404(user_id).all()
-   return render_template('details.html', posts=post)
+
+     
+   return redirect(f"/users/{user_id}")
+
+
+
+
+@app.route('/posts/<int:post_id>')
+def show_post(post_id):
+    """SHOWS USERS POSTS"""
+
+    posts = Post.query.get_or_404(post_id)
+
+
+    return render_template('posts.html', posts=posts)
