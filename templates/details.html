@@ -6,7 +6,7 @@
 {% block details %}
 <h1>{{users.first_name}} {{ users.last_name}}</h1>
 
-<img src="{{users.image_url}}">
+<img src="{{users.image_url}}" class="rounded float-left" height="300px" width="300px">
 
 
 <form action="/users/{{users.id}}/edit">
@@ -16,4 +16,9 @@
 <form action="/users/{{users.id}}/delete" method="POST">
     <button type="submit"> Delete</button>
 </form>
+
+<form action="/users/{{users.id}}/posts/new">
+    <button action="submit"> Add Post</button>
+</form>
+
 {% endblock %}

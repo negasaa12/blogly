@@ -1,9 +1,8 @@
 
-
-
+from datetime import datetime
 from flask import Flask, request, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 from sqlalchemy import text
 
 
@@ -125,8 +124,40 @@ def update_details(user_id):
 @app.route('/users/<int:user_id>/delete', methods=["POST"])
 def delete_user(user_id):
 
+
+   """DELETE USER"""
+
    users = User.query.get_or_404(user_id)
    db.session.delete(users)
    db.session.commit()
     
    return redirect('/users')
+
+
+
+@app.route('/users/<int:user_id>/posts/new')
+def post_form(user_id):
+    
+    """A form for a post """
+
+    users = User.query.get_or_404(user_id)
+
+    return render_template('post.html', users=users)
+
+
+
+
+@app.route('/users/<int:user_id>/posts/new', methods=["POST"])
+def add_post(user_id):
+   """Adding users post to their page"""
+
+
+   title = request.form['title']
+   content = request.form['content']
+
+   post = Post(title=title, content=content, user_id=user_id)
+   db.session.add(post)
+   db.session.commit()
+
+   posts = Post.query.get_or_404(user_id).all()
+   return render_template('details.html', posts=post)

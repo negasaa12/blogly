@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+
+
+
+{% block post_form %}
+
+<h1> Add Post for {{users.first_name}} {{users.last_name}}</h1>
+<!-- <div>
+<form action="/users/new" method="POST">
+        
+    <p>Title<input type="text" name="title"></p>
+
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div> -->
+<form action="/users/{{users.id}}/posts/new" method="POST" id="add-post">
+    <div class="container">
+      <div class="mb-3">
+        <label for="title" class="form-label"> Title </label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" name="content" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  
+
+{% endblock %}
