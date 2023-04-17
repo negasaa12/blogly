@@ -1,4 +1,4 @@
-from models import User, db, Post
+from models import User, db, Post, Tag, PostTag
 from app import app
 
 
@@ -34,13 +34,25 @@ p3 = Post(title='Is Mayo an instrument?', content='I was wondering just because 
 p4 = Post(title='Best Wine Ever', content='The best place to have wine is always in this little cafe Downtown!', user_id= 4)
 p5 = Post(title='Get A Grip', content='My little brother is always so gloomy?', user_id= 1)
 
+
+
+"""TAGS"""
+tag1 = Tag(name='Fun')
+tag2 = Tag(name = 'Other')
+tag3 = Tag(name ='Scary')
+
+post_tag1 = PostTag(post_id=3, tag_id=1)
+post_tag2 = PostTag(post_id=1, tag_id=3)
+post_tag3 = PostTag(post_id=3, tag_id=2)
+post_tag4 = PostTag(post_id=4, tag_id=2)
+post_tag5= PostTag(post_id=5, tag_id=1)
+
 """users commit"""
 db.session.add(Damon)
 db.session.add(derek)
 db.session.add(ben)
 db.session.commit()
 db.session.add(diana)
-
 db.session.add(peter)
 
 """post commit"""
@@ -50,6 +62,22 @@ db.session.add(p3)
 db.session.add(p4)
 db.session.add(p5)
 
+
+
+"""tag commit"""
+db.session.add(tag1)
+db.session.add(tag2)
+db.session.add(tag3)
+db.session.commit()
+
+
+
+"""post_tag commit"""
+db.session.add(post_tag1)
+db.session.add(post_tag2)
+db.session.add(post_tag3)
+db.session.add(post_tag4)
+db.session.add(post_tag5)
 
 db.session.commit()
 

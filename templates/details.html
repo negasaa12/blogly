@@ -21,9 +21,17 @@
     <button action="submit"> Add Post</button>
 </form>
 
-<ul>
-    {% for post in posts %}
-    <li><a href="/posts/{{post.id}}"> {{post.title}} </a></li>
-    {% endfor %}
-</ul>
+
+
+<h2>POSTS</h2>
+
+
+
+<div class="row mx-md-n5">
+   <ul class="list-group">
+     {% for post in posts %}
+       <li class="list-group-item"><a href="/posts/{{post.id}}"> {{post.title}} </a></li>
+     {% endfor %}
+   </ul>
+</div>
 {% endblock %}

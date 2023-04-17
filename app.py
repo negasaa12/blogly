@@ -2,9 +2,9 @@
 from datetime import datetime
 from flask import Flask, request, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, PostTag, Tag
 from sqlalchemy import text
-
+from unittest import TestCase
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///user_data_db'
@@ -222,3 +222,24 @@ def delete_post(post_id):
 
 
    return redirect(f"/users/{post_id}")
+
+ ######################################################################
+"""TAG ROUTES"""
+
+@app.route('/tags')
+def list_tags():
+    """list all tags"""
+    tags = Tag.query.all()
+
+
+    return render_template('show_tags.html', tags=tags)
+
+
+
+@app.route('/tags/<int:tag_id>')
+def tags_show(tag_id):
+    """Show a page with info on a specific tag"""
+
+    tag = Tag.query.get_or_404(tag_id)
+    
+    return render_template('tag_details.html', tag=tag)
